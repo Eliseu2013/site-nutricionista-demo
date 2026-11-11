@@ -1,0 +1,135 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-paper: var(--paper);
+  --color-leaf: var(--leaf);
+  --color-sage: var(--sage);
+  --color-terra: var(--terra);
+  --color-ink: var(--ink);
+  --color-rule: var(--rule);
+  --color-bone: var(--bone);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Work Sans", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 4px;
+  --paper: oklch(0.959 0.016 84);      /* #F6F1E7 */
+  --leaf: oklch(0.383 0.045 154);      /* #2F4A3A */
+  --sage: oklch(0.9 0.026 128);        /* #DCE3D3 */
+  --terra: oklch(0.6 0.128 44);        /* #C2643F */
+  --ink: oklch(0.245 0.011 155);       /* #1F2521 */
+  --rule: oklch(0.85 0.026 84);        /* #D8CFBE */
+  --bone: oklch(0.994 0.008 85);       /* #FFFDF8 */
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--bone);
+  --card-foreground: var(--ink);
+  --popover: var(--bone);
+  --popover-foreground: var(--ink);
+  --primary: var(--leaf);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sage);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sage);
+  --muted-foreground: oklch(0.42 0.02 155);
+  --accent: var(--terra);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--paper);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--terra);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: auto; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3 { font-family: var(--font-display); color: var(--leaf); }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  :focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+}
+
+@utility ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 31px,
+    color-mix(in oklab, var(--rule) 40%, transparent) 31px 32px
+  );
+}
+
+@utility highlight {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 55%,
+    color-mix(in oklab, var(--terra) 25%, transparent) 55%
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.1em;
+}
+
+@utility label-caps {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility btn-leaf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.4rem;
+  background: var(--leaf);
+  color: var(--paper);
+  font-weight: 600;
+  border-radius: 2px;
+  &:hover { background: var(--ink); }
+}
+
+@utility btn-terra {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.4rem;
+  background: var(--terra);
+  color: var(--ink);
+  font-weight: 600;
+  border-radius: 2px;
+  &:hover { background: var(--paper); }
+}
